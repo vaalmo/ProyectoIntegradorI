@@ -1,12 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
+
+
 <body>
-    <h1>Good morning, <span style="color: green">{{name}}</span></h1>
-    <h2>This is the main page</h2>
+    <form>
+        <div class="mb-3">
+          <label for="searchMovie" class="form-label">
+            Search for movie:
+          </label>
+          <input type="text" class="form-control" name="searchMovie">
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+      <p>Searching for {{ searchTerm }}</p>
+      <div class = "row row-cols-1 row-cols-md-3 g-4">
+      {% for movie in movies %}
+      <div v-for="movie in movies" class="col">
+        <div class="card">
+          <img class="card-image-top" src="{{ movie.image.url }}" />
+          <div class="card-body">
+        <h5 class="card-title fw-bold">{{ movie.title }}</h5>
+        <p class="card-text">{{ movie.description }}</p>
+        {% if movie.url %}
+            <a href="{{ movie.url }}" class="btn btn-primary">Movie Link</a>
+        {% endif %}
+          </div>
+      {% endfor %}
+      </div>
+      </div>
+      </div>
+      </div>
+      <br />
+      
 </body>
 </html>
